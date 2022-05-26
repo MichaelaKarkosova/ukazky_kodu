@@ -1,0 +1,148 @@
+Plugin:
+  prefix: "&0&l[&b&lDeathCommands&0&l]"
+Causes:
+ contact:  #contact with blocks like cactus
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% diamond 10"
+  - "give %player% log 10"
+  - "give %player% emerald 10"
+  - "give %player% diamond_sword 1"
+ cramming: #colliding with too many entities
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% diamond 10"
+  - "give %player% log 10"
+  - "give %player% emerald 10"
+  - "give %player% diamond_sword 1"
+ dragon_breath:
+  execute_on: "death"
+  random: false
+  commands:
+  - "broadcast Oops, player %player% was killed by Enderdragon!"
+  - "eco take %player% 20"
+ drowning:
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "broadcast Player %player% was killed by shark!"
+  - "broadcast Player %player% was swimming until tired"
+ entity_explosion: #creeper explosion
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% TNT 1"
+  - "msg %player% you died because creeper, but you were sooooooooo courageous so you received reward"
+ entity_sweep_attack:
+  execute_on: "respawn"
+  random: false
+  commands:
+  - "give %player% diamond_sword 1"
+ fall:
+  execute_on: "respawn"
+  random: false
+  commands:
+  - "msg %player% Oops, next time try to use elytra!"
+  - "give %player% elytra 1"
+ falling_block: #gravel, stone...
+  execute_on: "death"
+  random: false
+  commands:
+  - "broadcast %player% died in mine!"
+
+ fire_tick: #ignition
+  execute_on: "death"
+  random: true
+  commands:
+  - "broadcast &a&l%player% was burned alive"
+  - "broadcast &b&l%player% was ignited to death!"
+ fire: #directly standing in fire or lava
+  execute_on: "respawn"
+  random: false
+  commands:
+  - "give %player% water_bucket 1"
+  - "msg %player% &aNext time try to use this!"
+ hot_floor: #magma block
+  execute_on: "respawn"
+  random: false
+  commands:
+  - "give %player% diamond 10"
+  - "broadcast %player% &k..... &b&lJust got 10 diamonds as achievement! &k..."
+ lightning: 
+  execute_on: "respawn"
+  random: false
+  commands:
+  - "give %player% diamond 10"
+  - "give %player% log 10"
+  - "give %player% emerald 10"
+  - "give %player% diamond_sword 1"
+  - "broadcast %player% just got item set as achievement!"
+ magic:
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% enchanted_golden_apple 2"
+  - "tempban %player% 10 minutes oops, you were unlucky!"
+ poison:
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% 466 1"
+  - "give %player% 322 5"
+  - "give %player% 466 2"
+  - "kill %player%"
+  - "tempban %player% 10 minutes oops, you were unlucky!"
+ projectile: #arrow
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% bow 1"
+ starvation:
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% bread 10"
+  - "effect give %player% hunger 30 2" 
+ suicide: #when player use /kill
+  execute_on: "death"
+  random: true
+  commands:
+  - "ban %player% You just used /kill command!"
+ fall:
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% diamond 10"
+  - "give %player% log 10"
+  - "give %player% emerald 10"
+  - "give %player% diamond_sword 1"
+ suffocation: #suffocation in wall, for example in sand/gravel
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "experience add %player% 500"
+  - "experience add %player% 200"
+  - "experience add %player% 50"
+ thorns: #killed by enchant thorns
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "experience add %player% 500"
+  - "experience add %player% 200"
+  - "experience add %player% 50"
+ void:
+  execute_on: "respawn"
+  random: true
+  commands:
+  - "give %player% diamond 10"
+  - "give %player% log 10"
+  - "give %player% emerald 10"
+  - "give %player% diamond_sword 1"
+ wither:
+  execute_on: "death"
+  random: true
+  commands:
+  - "broadcast %player% tried to fight with wither, but failed!"
+  - "broadcast %player% Clap for %player%'s try to kill wither!!"
