@@ -1,0 +1,1 @@
+Web aktuálně není udržován - jedná se o projekt, který je aktuálně stopnutý. Vzhled je spíše experimentuální, jsem spíše na backend a vzhled vždy řeším až naposledy. Stránka umí porovnávat kompatibilitu komponent, zhodnotit zdroj a přidat novou komponentu, pokud v databázi chybí (viz přidat komponentu), jen skrz odkaz z czc.
