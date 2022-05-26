@@ -1,0 +1,20 @@
+Menu:
+ basic:
+  title: "&bHopper system"
+  description:
+   remove_accept: "You have removed %block% from list"
+ confirm:
+  title: "&cConfirm"
+  meta_accept:
+   displayname: "&aRemove %block%"
+   lore: "Click to remove %block% from list"
+  meta_reject:
+   displayname: "&cDo not remove %block%"
+   lore: "Cancel"
+Messages:
+ Block_removed_from_list: "&aYou have removed %block% from list"
+ New_block_added_sucessfully: "&AYou have added %block% to list!"
+ Maxblocks_reached: "&cYou have reached 54 blocks. You cant add more to this hopper!"
+ This_block_is_already_in_list: "&aThis block is already in list!"
+ Hopper_empty: "&cThis hopper is not set. Add new block by click on hopper with item with hand while sneaking!"
+ Hopper_first_item: "&cYou cant remove that item because its 1. item of hopper. Hopper always must have at least 1 item!"
