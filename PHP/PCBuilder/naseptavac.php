@@ -35,17 +35,18 @@ $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
 		array_push($vysledkyurl, $row["url"]);
 	}
-	echo "<br>";
-	
-	echo "<br>";
+    echo "<br>";
+    echo "<br>";
 $_SESSION["type"]= $_GET['type'];
+echo $_SESSION["type"];
 echo "<div class='table'>";
 echo "<table border='1' style='width:auto'>";
 echo "<div class='nadpis'><th>Info</th></div>";
-echo "<div class='nadpis'><th>Nazev</th></div>";
+echo "<div class='nadpis'><th>Nazev".$_SESSION["type"]."</th></div>";
 echo "<th></th>";
 for ($i = 0; $i < count($vysledky); $i++) {
 	echo "<tr><td><form action='$vysledkyurl[$i]' method='get' target='_blank'><input type='submit' value='Info' name='Submit'></form>";
 	echo "<td>".$vysledky[$i]."</td>";
 echo "<td><form method='POST'><input class='inputtabulka' type='hidden' name='vyber' value='$vysledky[$i]'><input type='submit' value='Přidat k porovnání' href='http://lupework.eu/PCC/'></form></td>";
 }
+
