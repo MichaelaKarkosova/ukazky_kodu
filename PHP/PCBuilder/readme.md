@@ -8,4 +8,6 @@ Další část je pod tlačítkem "přidat komponentu". Zde můžeme jednoduše 
 Vzhled webu prosím moc neřešte - šlo o experimentální vzhled a jsem spíš na backend. Codebase tohoto projektu je přibližně 4 roky stará (až na index.php, který byl přepsán).
 Jelikož je kod starší, je možné, že přidávání a hodnocení zdrojů nemusí fungovat úplně na 100% - některé informace možná nebudou z czc získány. 
 
+Původně měl web umět i navrhovat PC sestavy na míru, nicméně tato featura nebyla dodělána. 
+
 Práce na projektu byla před nějakou dobou zastavena z důvodu nedostatku času.
