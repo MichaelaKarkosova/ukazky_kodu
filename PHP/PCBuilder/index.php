@@ -165,7 +165,6 @@ final class CompatibilityChecker{
 
         if (!$paticekompatibilni){
             if ($GLOBALS['active'] != true){
-                ErrorMessageBox::set('tvoje cpu nesedí do desky, debile.');
                 ErrorMessageBox::throwError("Zjištěna nekompatibilita!","Deska není kompatibilní s procesorem.", "procesor", "desku", "clear/clearcpu.php", "clear/clearmb.php","");
             }
         }
