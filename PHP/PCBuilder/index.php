@@ -1,4 +1,3 @@
-
 <?php
 
 final class ErrorMessageBox
@@ -16,50 +15,50 @@ final class ErrorMessageBox
 
     }
     public static function ThrowError($nadpis, $text, $remove1, $remove2, $url, $url2, $ignore) : void{
-                echo '<script>';
+        echo '<script>';
 
-                echo '$( function() {';
-                echo '$( "#dialog-confirm" ).dialog({';
-                echo 'resizable: false,';
-                echo 'draggable: false,';
-                echo 'height: "auto",';
-                echo 'width: 460,';
-                echo 'modal: true,';
-                echo "buttons: {";
-                echo '"Odstranit '.$remove1.'": function() { ';
+        echo '$( function() {';
+        echo '$( "#dialog-confirm" ).dialog({';
+        echo 'resizable: false,';
+        echo 'draggable: false,';
+        echo 'height: "auto",';
+        echo 'width: 460,';
+        echo 'modal: true,';
+        echo "buttons: {";
+        echo '"Odstranit '.$remove1.'": function() { ';
 
-                echo 'window.location.href = "'.$url.'"';
+        echo 'window.location.href = "'.$url.'"';
 
-                echo "},";
-                if ($ignore != ""){
-                    echo '"ignorovat": function() {';
+        echo "},";
+        if ($ignore != ""){
+            echo '"ignorovat": function() {';
 
-                    echo 'window.location.href = "ignoreram/";';
-                    echo '},';
-                }
+            echo 'window.location.href = "ignoreram/";';
+            echo '},';
+        }
 
-                echo '"Odstranit '.$remove2.'": function() {';
-                echo 'window.location.href = "'.$url2.'"';
-                echo "}";
+        echo '"Odstranit '.$remove2.'": function() {';
+        echo 'window.location.href = "'.$url2.'"';
+        echo "}";
 
-                echo "}";
-                echo "});";
-                echo "} );";
-                echo "</script>";
-                echo "</head>";
-                echo "<body>";
-                echo '<div id="dialog-confirm" title="'.$nadpis.'"';
-                echo '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0px 20px 20px 5px;"></span>'.$text.'</p>';
-                echo '</div>';
+        echo "}";
+        echo "});";
+        echo "} );";
+        echo "</script>";
+        echo "</head>";
+        echo "<body>";
+        echo '<div id="dialog-confirm" title="'.$nadpis.'"';
+        echo '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0px 20px 20px 5px;"></span>'.$text.'</p>';
+        echo '</div>';
 
-            }
+    }
 
 }
 
 final class htmlHandler{
 
-    public static function head(){
-       echo '<head>
+public static function GenerateHead(){
+    echo '<head>
     <script src="js/errorBox.js"></script>
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
@@ -70,53 +69,52 @@ final class htmlHandler{
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/custom.js"></script>
-
   </head>
 <a href="add.php" class="button">Přidat komponentu</a>
 <input type="submit" name="jj" class="button" value="Hodnocení zdroje" onClick="zdrojhodnoceni();">
 <br>';
 
-    }
-    public static function polozky(){
-        $dbdriver = new DatabaseData();
-        echo "<body>
+}
+public static function GetItems(){
+    $dbdriver = new DatabaseData();
+    echo "<body>
        </form>
     </p><form method='get' name='specify2' style='width:auto;display:block;'></form><b><div class='polozky' align='right'>Tvoje položky</b><div class ='items'>";
-        $dbdriver->getActive();
-echo "</big></div></body>";
-        echo "<a href='clear.php'>Vyčistit</a>";
+    $dbdriver->GetActive();
+    echo "</big></div></body>";
+    echo "<a href='clear.php'>Vyčistit</a>";
 
 }
-    public static function GenerateSelector() :void{
+public static function GenerateSelector() :void{
 
 
-        echo "</div>";
-    echo "<p>&nbsp;</p> <p>&nbsp;</p> ";
-    ?></div>Deska: <input type="text" name="specify2" style='width:auto;display:block' class='input' oninput="show(this.value,'board')"></input></p>Procesor: <input type="text" name="specify2" class='input' style='width:auto;display:block' oninput="show(this.value,'cpu')"></input></p>Grafická karta: <input class='input' type="text" style='width:auto;display:block' name="specify2" oninput="show(this.value,'gpu')"></input></p>RAM: <input  class='input' type="text" style='width:auto;display:block' name="specify2" oninput="show(this.value,'ram')"></input></form><div id="specify"></div></form></p>
-    <?php
-    }
+echo "</div>";
+echo "<p>&nbsp;</p> <p>&nbsp;</p> ";
+?></div>Deska: <input type="text" name="specify2" style='width:auto;display:block' class='input' oninput="show(this.value,'board')"></input></p>Procesor: <input type="text" name="specify2" class='input' style='width:auto;display:block' oninput="show(this.value,'cpu')"></input></p>Grafická karta: <input class='input' type="text" style='width:auto;display:block' name="specify2" oninput="show(this.value,'gpu')"></input></p>RAM: <input  class='input' type="text" style='width:auto;display:block' name="specify2" oninput="show(this.value,'ram')"></input></form><div id="specify"></div></form></p>
+<?php
+}
 
-    public static function powerconsumption(){
-        $dbdata = new DatabaseData();
-        $tdpgpu = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "TDP", "gpu");
-        $tdpcpu =  $dbdata->GetValuesFromDB("vlozeno",  "polozka", "TDP", "cpu");
-    	$_SESSION["celkovetdp"] = $tdpcpu+$tdpgpu;
-	    echo "Max spotřeba:<p><div class='spotreba'>".$_SESSION['celkovetdp']." W</div>";
-    }
+public static function UpdatePowerConsumption(){
+    $dbdata = new DatabaseData();
+    $tdpgpu = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "TDP", "gpu");
+    $tdpcpu =  $dbdata->GetValuesFromDB("vlozeno",  "polozka", "TDP", "cpu");
+    $_SESSION["celkovetdp"] = $tdpcpu+$tdpgpu;
+    echo "Max spotřeba:<p><div class='spotreba'>".$_SESSION['celkovetdp']." W</div>";
+}
 }
 class IDGenerator{
 
     public ?string $userid = "";
 
 
-    public function getUserid(): string{
+    public function GetUserid(): string{
         return $this->userid;
     }
 
     public function __construct(?string $useridid){
 
         if (empty($useridid)){
-            $this->userid = $this->generateRandomString();
+            $this->userid = $this->GenerateRandomString();
             $_SESSION["id"] = $this->userid;
         }
         else{
@@ -125,8 +123,8 @@ class IDGenerator{
         }
     }
 
-    function generateRandomString($length = 15) {
-            $_SESSION["id"] = $this->userid;
+    function GenerateRandomString($length = 15) {
+        $_SESSION["id"] = $this->userid;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -140,46 +138,46 @@ class IDGenerator{
 }
 final class CompatibilityChecker{
 
-    static function checkForCompatibility(){
+    static function CheckForCompatibility(){
         $comparer = new Comparer();
         $dbdata = new DatabaseData();
-        $boardchipset = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "chipset", "board");
-        $cpuchipset =  $dbdata->GetValuesFromDB("vlozeno",  "polozka", "chipsety", "cpu");
+        $board_chipset = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "chipset", "board");
+        $cpu_chipset =  $dbdata->GetValuesFromDB("vlozeno",  "polozka", "chipsety", "cpu");
 
 
-        $chipsetkompatibilni =  $comparer->compareValues($boardchipset, $cpuchipset);
-        $boardpatice = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "patice", "board");
-        $cpupatice=  $dbdata->GetValuesFromDB("vlozeno",  "polozka", "patice", "cpu");
+        $chipset_compatible =  $comparer->CompareValues($board_chipset, $cpu_chipset);
+        $board_socket = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "patice", "board");
+        $cpu_socket=  $dbdata->GetValuesFromDB("vlozeno",  "polozka", "patice", "cpu");
 
-        $paticekompatibilni =  $comparer->compareValues($boardpatice, $cpupatice);
+        $socket_compatible =  $comparer->CompareValues($board_socket, $cpu_socket);
 
-        $boardpcie = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "pcie", "board");
-        $gpupcie= $dbdata->GetValuesFromDB("vlozeno",  "polozka", "pcie", "gpu");
-        $pciekompatibilni =  $comparer->compareValues($boardpcie, $gpupcie);
+        $board_pcie = $dbdata->GetValuesFromDB("vlozeno",  "polozka", "pcie", "board");
+        $gpu_pcie= $dbdata->GetValuesFromDB("vlozeno",  "polozka", "pcie", "gpu");
+        $pcie_compatible =  $comparer->CompareValues($board_pcie, $gpu_pcie);
 
 
-        $boardddr= $dbdata->GetValuesFromDB("vlozeno",  "polozka", "ddr", "board");
-        $ramddr= $dbdata->GetValuesFromDB("vlozeno",  "polozka", "DDR", "ram");
+        $board_ddr= $dbdata->GetValuesFromDB("vlozeno",  "polozka", "ddr", "board");
+        $ram_ddr= $dbdata->GetValuesFromDB("vlozeno",  "polozka", "DDR", "ram");
 
-        $ddrkompatibilni = $comparer->compareValues($boardddr, $ramddr);
+        $ddr_compatible = $comparer->CompareValues($board_ddr, $ram_ddr);
 
-        if (!$paticekompatibilni){
+        if (!$socket_compatible){
             if ($GLOBALS['active'] != true){
                 ErrorMessageBox::throwError("Zjištěna nekompatibilita!","Deska není kompatibilní s procesorem.", "procesor", "desku", "clear/clearcpu.php", "clear/clearmb.php","");
             }
         }
-        else if (!$chipsetkompatibilni){
+        else if (!$chipset_compatible){
             if ($GLOBALS['active'] != true){
-                ErrorMessageBox::throwError("Zjištěna nekompatibilita!","Chipset desky neni kompatibilni s procesorem.", "cpu", "desku", "clear/clearcpu.php", "clear/clearmb.php", "");
+                ErrorMessageBox::throwError("Zjištěna nekompatibilita!","Chipset desky neni _compatible s procesorem.", "cpu", "desku", "clear/clearcpu.php", "clear/clearmb.php", "");
             }
         }
-        else if (!$pciekompatibilni) {
+        else if (!$pcie_compatible) {
             if ($_SESSION["ignorovat"] != true) {
                 ErrorMessageBox::throwError("Zjištěna nevhodná kombinace", "Verze PCI-E je nižší, než na grafické kartě. PC bude fungovat, ale deska může zpomalovat grafickou kartu. ", "gpu", "desku", "clear/clearcgu.php", "clear/clearmb.php", "gpu");
 
             }
         }
-        else if (!$ddrkompatibilni) {
+        else if (!$ddr_compatible) {
             if ($_SESSION["ignorovat"] != true) {
                 ErrorMessageBox::throwError("Zjištěna nekompatibilita!","Verze DDR nesouhlasí, PC nebude fungovat.", "desku", "ram", "clear/clearmb.php", "clear/clearram.php", "");
             }
@@ -194,33 +192,33 @@ class DatabaseData{
 
 //výpis z "vlozeno"
 
-    function getActive(){
+    function GetActive(){
         $db = Connection::get();
-        $db->getConnection(); // vrací mysqli
+        $db->GetConnection(); // vrací mysqli
         $sql = "select polozka, id from komponenty.vlozeno where id = '".$_SESSION['id']."'";
         $db->GetSQLResult($sql);
 
     }
     function ReplaceActive(){
-        $_SESSION["pridat"] = $_POST["vyber"];
+        $_SESSION["toadd"] = $_POST["vyber"];
         $db = Connection::get();
-        $db->getConnection(); // vrací mysqli
-        if ($_SESSION["pridat"]!=NULL){
+        $db->GetConnection(); // vrací mysqli
+        if ($_SESSION["toadd"]!=NULL){
             if (isset($_SESSION["id"])){
                 $sql = "select * from komponenty.vlozeno where (id='".$_SESSION["id"]."' and type='".$_SESSION["type"]."')";
-                $result = $db->executeQuery($sql);
+                $result = $db->ExecuteQuery($sql);
                 //Comparer::show_array($result);
                 while($row = $result->fetch_assoc()) {
-                     $typ = $row["type"];
+                    $typ = $row["type"];
                 }
                 if (isset($typ)){
-                   $sql = "update komponenty.vlozeno set polozka='".$_SESSION["pridat"]."' where type='".$_SESSION["type"]."'";
+                    $sql = "update komponenty.vlozeno set polozka='".$_SESSION["toadd"]."' where type='".$_SESSION["type"]."'";
                 }
                 else{
-                    $sql = "insert into komponenty.vlozeno (id, polozka, type) values ('".$_SESSION["id"]."', '".$_SESSION["pridat"]."', '".$_SESSION["type"]."')";
+                    $sql = "insert into komponenty.vlozeno (id, polozka, type) values ('".$_SESSION["id"]."', '".$_SESSION["toadd"]."', '".$_SESSION["type"]."')";
                 }
-               $db->executeQuery($sql);
-                $_SESSION["pridat"] = null;
+                $db->ExecuteQuery($sql);
+                $_SESSION["toadd"] = null;
                 $_SESSION["type"] = null;
                 $_POST["vyber"]=NULL;
                 //header("Refresh:0");
@@ -232,12 +230,12 @@ class DatabaseData{
 
 
 //odstranění empty z databáze vybraných produktů podle ID
-    function removeEmpty(string $id){
+    function RemoveEmpty(string $id){
 
         $db = Connection::get();
-        $db->getConnection(); // vrací mysqli
+        $db->GetConnection(); // vrací mysqli
 
-        $db->executeQuery("delete from komponenty.vlozeno where id like '%".$id."%' and polozka = ''");
+        $db->ExecuteQuery("delete from komponenty.vlozeno where id like '%".$id."%' and polozka = ''");
     }
 
 
@@ -248,7 +246,7 @@ class DatabaseData{
 
         //vzít název komponenty
         $sql = "select ".$row1." from komponenty.".$table1." where (id ='".$_SESSION["id"]."') and (type='".$hwtype."')";
-        $result = $db->getConnection()->query($sql);
+        $result = $db->GetConnection()->query($sql);
         $firstvalue = "";
         $secondvalue = "";
         while($row = $result->fetch_assoc()) {
@@ -256,7 +254,7 @@ class DatabaseData{
         }
 
         $sql = "select ".$row2." from komponenty.".$hwtype." where Nazev ='".$firstvalue."'";
-        $result = $db->getConnection()->query($sql);
+        $result = $db->GetConnection()->query($sql);
         while($row = $result->fetch_assoc()) {
             $secondvalue = $row[$row2];
 
@@ -264,17 +262,17 @@ class DatabaseData{
         return $secondvalue;
     }
 
-    function selectFromDb($tablename, $selected_items, $id, $name, $toReturn, $type){
+    function SelectFromDb($tablename, $selected_items, $id, $name, $toReturn, $type){
         $db = Connection::get();
         if ($name != ""){
             $sql = "select ".$selected_items." from komponenty.".$tablename." where (Nazev ='".$name."')";
-            $result = $db->executeQuery($sql); // vratí výsledek dotazu
+            $result = $db->ExecuteQuery($sql); // vratí výsledek dotazu
             $allvalues = $result->fetch_assoc();
 
         }
         else {
             $sql = "select * from komponenty.".$tablename." where (id ='".$id."') and (type='".$type."')";
-            $result = $db->executeQuery($sql); // vratí výsledek dotazu
+            $result = $db->ExecuteQuery($sql); // vratí výsledek dotazu
             $allvalues = $result->fetch_assoc();
         }
 
@@ -300,7 +298,7 @@ class Comparer{
     public function __construct(){
     }
 
-    function compareValues(?string $comparervalue1, ?string $comparervalue2): bool{
+    function CompareValues(?string $comparervalue1, ?string $comparervalue2): bool{
         $this->comparervalue1 = $comparervalue1;
         $this->comparervalue2 = $comparervalue2;
         $allok = true;
@@ -384,15 +382,14 @@ final class Connection{
     }
 
     /**
-     * Shortcut metoda pro ->getConnection()->query()
+     * Shortcut metoda pro ->GetConnection()->query()
      *
      * @param string $query
      *
      * @return bool|\mysqli_result
      */
-    public function executeQuery(string $query) {
-        return $this->getConnection()->query($query);
-
+    public function ExecuteQuery(string $query) {
+       return $this->GetConnection()->query($query);
     }
 
     /**
@@ -400,7 +397,7 @@ final class Connection{
      *
      * @return \mysqli
      */
-    public function getConnection(): mysqli{
+    public function GetConnection(): mysqli{
         if (NULL === $this->connection) {
             $this->connection = new mysqli($this->host, $this->user, $this->password, $this->dbName);
         }
@@ -409,25 +406,25 @@ final class Connection{
     }
 
     public function GetSQLResult($sql) : void{
-       $result = $this->getConnection()->query($sql);
+        $result = $this->GetConnection()->query($sql);
         while($row = $result->fetch_assoc()) {
-              echo "<p>".$row["polozka"]."</p>";
+            echo "<p>".$row["polozka"]."</p>";
         }
     }
 }
 
-    // --------------------- ZAČÁTEK APPKY -----------------
+// --------------------- ZAČÁTEK APPKY -----------------
 
-error_reporting(0);
+error_reporting(1);
 
 session_start();
 
 //načíst <head>
-htmlHandler::head();
+htmlHandler::GenerateHead();
 
 
 //připojení k db
-Connection::setup('*******', '*******e','*******','komponenty');
+Connection::setup('*******', '*******','*********','komponenty');
 //instance třídy
 $dbdriver = new DatabaseData();
 //generování userID
@@ -438,7 +435,7 @@ else{
     $idgeneratorService = new IDGenerator($_SESSION["id"]);
 }
 //vyčištění empty hodnot z db
-$dbdriver->removeEmpty($_SESSION['id']);
+$dbdriver->RemoveEmpty($_SESSION['id']);
 
 
 //updatovat komponenty, pokud došlo ke změně - session obsahuje novou komponentu
@@ -447,20 +444,19 @@ if (isset($_SESSION["type"])){
 }
 
 
-
 //kontrola kompatibility
-CompatibilityChecker::checkForCompatibility();
+CompatibilityChecker::CheckForCompatibility();
 
 //vygenerujeme formulář - vyhledávací pole
 htmlHandler::GenerateSelector();
 
 
 //generujeme spotřebu
-htmlhandler::powerconsumption();
+htmlhandler::UpdatePowerConsumption();
 
 
 //generujeme html položek
-htmlHandler::polozky();
+htmlHandler::GetItems();
 
 
 ?>
