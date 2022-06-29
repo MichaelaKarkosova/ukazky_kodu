@@ -46,6 +46,6 @@ echo "<th></th>";
 for ($i = 0; $i < count($vysledky); $i++) {
 	echo "<tr><td><form action='$vysledkyurl[$i]' method='get' target='_blank'><input type='submit' value='Info' name='Submit'></form>";
 	echo "<td>".$vysledky[$i]."</td>";
-echo "<td><form method='POST'><input class='inputtabulka' type='hidden' name='vyber' value='$vysledky[$i]'><input type='submit' value='Přidat k porovnání'></form></td>";
+echo "<td><form method='POST'><input class='inputtabulka' type='hidden' name='vyber' value='$vysledky[$i]'><input type='submit' value='Přidat k porovnání' href='http://lupework.eu/PCC/'></form></td>";
 }
 
